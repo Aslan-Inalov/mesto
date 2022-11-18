@@ -10,3 +10,12 @@
     position: fixed;
     color: #000;
 }
+
+@media (max-width: 460px) {
+    .popup__container {
+        max-width: 282px;
+        min-height: 322px;
+        padding: 22px 25px;
+    }
+
+}
