@@ -13,6 +13,7 @@
 @media (max-width: 768px) {
   .profile__about {
     justify-self: center;
+    max-width: 340px;
   }
 }
 

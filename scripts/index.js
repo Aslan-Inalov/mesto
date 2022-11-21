@@ -1,48 +1,49 @@
 const popupOpenElem = document.querySelector('.profile__edit-button');
 const popupElems = document.querySelector('.popup');
-const popupCloseElem = document.querySelectorAll('.popup__close-button');
-const popupProfile = document.querySelector('.popup_profile');
+const popupCloseElem = document.querySelector('.popup__close-button');
 const profileName = document.querySelector('.profile__name');
 const profileAbout = document.querySelector('.profile__about');
 const profileInputName = document.querySelector('.popup__input_type_name');
 const profileInputAbout = document.querySelector('.popup__input_type_about');
-const formProfile = document.querySelector('.popup__form_profile');
-const likeElem = document.querySelector(".element__like");
-const popupCard = document.querySelector(".popup_card");
+const formProfile = document.querySelector('.popup__form');
 
+//редактор профиля 
 
-function changeValue() {
-  profileInputName.value = profileName.textContent;
-  profileInputAbout.value = profileAbout.textContent;
-}
-
-function openPopup(popup) {
+//открытия редактора с заполнеными значениями профайла
+function openPopup(popup) { 
   popup.classList.add('popup_opened');
+
+  profileInputName.value = profileName.textContent;
+  profileInputAbout.value = profileAbout.textContent; 
 }
 
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
+//закрытия редактора
+function closePopup(popup) { 
+  popup.classList.remove('popup_opened'); 
 }
 
+//сохранения
 function handleFormProfileSubmit(elem) {
   elem.preventDefault();
 
   profileName.textContent = profileInputName.value;
   profileAbout.textContent = profileInputAbout.value;
 
-  closePopup(popupProfile);
+  closePopup(popupElems);
 }
 
-popupCloseElem.forEach((button) => {
-  const popup = button.closest('.popup');
-  button.addEventListener('click', () => closePopup(popup));
-});
 
+//открыть
 popupOpenElem.addEventListener('click', () => {
-  openPopup(popupProfile);
-  changeValue();
+  openPopup(popupElems);
 });
 
+//закрыть
+popupCloseElem.addEventListener('click', () => {
+  closePopup(popupElems);
+});
+
+//сохранить
 formProfile.addEventListener('submit', handleFormProfileSubmit);
 
 
