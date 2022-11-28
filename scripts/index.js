@@ -99,6 +99,11 @@ const cardTemplate = document.querySelector('#card-template').content.querySelec
 const handerDeleteCard = (event) => {
   event.target.closest('.element__item').remove();
 }
+
+const handerLikeCard = (event) => {
+  event.target.closest('.element__like').classList.toggle('element__like_active');
+}
+
 const generateCard = (dataCard) => {
   const newCard = cardTemplate.cloneNode(true);
 
@@ -110,6 +115,9 @@ const generateCard = (dataCard) => {
 
   const deleteBtn = newCard.querySelector('.element__delete');
   deleteBtn.addEventListener('click', handerDeleteCard)
+
+  const likeBtn = newCard.querySelector('.element__like');
+  likeBtn.addEventListener('click', handerLikeCard)
 
   return newCard;
 
