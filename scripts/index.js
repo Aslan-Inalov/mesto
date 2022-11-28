@@ -32,6 +32,7 @@ const cardAddBtn = document.querySelector('.profile__add-button');
 const popupElems = document.querySelector('.popup');
 const popupProfile = document.querySelector('.popup_profile');
 const popupCard = document.querySelector('.popup_card');
+const popupPicture = document.querySelector('.popup_picture');
 const popupCloseElem = document.querySelectorAll('.popup__close-button');
 const profileName = document.querySelector('.profile__name');
 const profileAbout = document.querySelector('.profile__about');
@@ -42,7 +43,8 @@ const formCard = document.querySelector('.popup__form_card');
 const cardContainer = document.querySelector('.element');
 const cardInputName = document.querySelector('.popup__input_card_name');
 const cardInputLink = document.querySelector('.popup__input_card_link');
-
+const popupImage = document.querySelector('.popup__image');
+const popupText = document.querySelector('.popup__picture-text');
 
 
 //РЕДАКТОР ПРОФИЛЯ 
@@ -118,6 +120,16 @@ const generateCard = (dataCard) => {
 
   const likeBtn = newCard.querySelector('.element__like');
   likeBtn.addEventListener('click', handerLikeCard)
+
+  //попак просмотра картинок
+  imageCard.addEventListener('click', () => {
+    openPopup(popupPicture);
+    
+    popupImage.src = imageCard.src;
+    popupImage.alt = imageCard.alt;
+    popupText.textContent = titleCard.textContent;
+
+  })
 
   return newCard;
 
