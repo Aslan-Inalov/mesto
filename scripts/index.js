@@ -1,31 +1,3 @@
-// массив карточек
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
 // узлы
 const popupOpenElem = document.querySelector('.profile__edit-button');
 const cardAddBtn = document.querySelector('.profile__add-button');
@@ -52,9 +24,6 @@ const popupText = document.querySelector('.popup__picture-text');
 //открытие редактора с заполнеными значениями профайла
 function openPopup(popup) { 
   popup.classList.add('popup_opened');
-
-  profileInputName.value = profileName.textContent;
-  profileInputAbout.value = profileAbout.textContent; 
 }
 
 //закрытие редактора
@@ -62,9 +31,14 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened'); 
 }
 
+function changeValue() {
+  profileInputName.value = profileName.textContent;
+  profileInputAbout.value = profileAbout.textContent; 
+}
+
 //сохранение
-function handleFormProfileSubmit(elem) {
-  elem.preventDefault();
+function handleFormProfileSubmit(event) {
+  event.preventDefault();
 
   profileName.textContent = profileInputName.value;
   profileAbout.textContent = profileInputAbout.value;
@@ -75,6 +49,7 @@ function handleFormProfileSubmit(elem) {
 //открыть
 popupOpenElem.addEventListener('click', () => {
   openPopup(popupProfile);
+  changeValue();
 });
 
 //сохранить
@@ -103,7 +78,7 @@ const handerDeleteCard = (event) => {
 }
 
 const handerLikeCard = (event) => {
-  event.target.closest('.element__like').classList.toggle('element__like_active');
+  event.target.classList.toggle('element__like_active');
 }
 
 const generateCard = (dataCard) => {
@@ -125,9 +100,9 @@ const generateCard = (dataCard) => {
   imageCard.addEventListener('click', () => {
     openPopup(popupPicture);
     
-    popupImage.src = imageCard.src;
-    popupImage.alt = imageCard.alt;
-    popupText.textContent = titleCard.textContent;
+    popupImage.src = dataCard.link;
+    popupImage.alt = dataCard.name;
+    popupText.textContent = dataCard.name;
 
   })
 

@@ -7,4 +7,5 @@
     min-width: 18px;
     height: 19px;
     transition: opacity 0.4s linear;
+    cursor: pointer;
 }
