@@ -65,7 +65,7 @@ function resetErrors(form) {
     hideInputError(form, input, configValidation);
   });
 }
-  
+
 //КАРТОЧКИ
 //открыть
 cardAddBtn.addEventListener('click', () => {
