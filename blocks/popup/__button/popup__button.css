@@ -17,6 +17,15 @@
   background: rgba(0, 0, 0, .8);
 }
 
+.popup__button:disabled {
+  color: #000000;
+  background-color: #f7f7f7;
+  border: 1px solid #000000;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.4;
+}
+
 @media (max-width: 460px) {
   .popup__button {
     min-height: 46px;
