@@ -31,6 +31,12 @@ const checkInputValidity = (formElement, inputElement, configValidation) => {
   }
 };
 
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  });
+};
+
 const toggleButtonState = (inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
     buttonElement.disabled = true;
@@ -39,11 +45,6 @@ const toggleButtonState = (inputList, buttonElement) => {
   }
 };
 
-const hasInvalidInput = (inputList) => {
-  return inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
-  });
-};
 
 //удаление ошибок
 function clearErrors(enterPopup) {

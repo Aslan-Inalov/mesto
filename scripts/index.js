@@ -5,14 +5,14 @@ const popupElems = document.querySelectorAll('.popup');
 const popupProfile = document.querySelector('.popup_profile');
 const popupCard = document.querySelector('.popup_card');
 const popupPicture = document.querySelector('.popup_picture');
-const popupCloseElem = document.querySelectorAll('.popup__close-button');
+const popupCloseElems = document.querySelectorAll('.popup__close-button');
 const profileName = document.querySelector('.profile__name');
 const profileAbout = document.querySelector('.profile__about');
 const profileInputName = document.querySelector('.popup__input_user_name');
 const profileInputAbout = document.querySelector('.popup__input_user_about');
 const formProfile = document.querySelector('.popup__form_profile');
 const formCard = document.querySelector('.popup__form_card');
-const formCardBtn = document.querySelector('.popup__button');
+const formCardBtn = formCard.querySelector('.popup__button');
 const cardContainer = document.querySelector('.element');
 const cardInputName = document.querySelector('.popup__input_card_name');
 const cardInputLink = document.querySelector('.popup__input_card_link');
@@ -20,20 +20,21 @@ const popupImage = document.querySelector('.popup__image');
 const popupText = document.querySelector('.popup__picture-text');
 
 
-//РЕДАКТОР ПРОФИЛЯ 
 
-//открытие редактора с заполнеными значениями профайла
+
+//открытие попапа
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupByEsc);
 }
 
-//закрытие редактора
+//закрытие попапа
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupByEsc);
-  clearErrors(popup);
 }
+
+//РЕДАКТОР ПРОФИЛЯ
 
 function changeValue() {
   profileInputName.value = profileName.textContent;
@@ -54,6 +55,7 @@ function handleFormProfileSubmit(event) {
 popupOpenElem.addEventListener('click', () => {
   openPopup(popupProfile);
   changeValue();
+  clearErrors(popupProfile);
 });
 
 //сохранить
@@ -73,23 +75,10 @@ cardAddBtn.addEventListener('click', () => {
   formCard.reset();
   resetErrors(formCard);
   openPopup(popupCard);
+  clearErrors(popupCard);
 });
 
-//универсальное закрытие попап
-popupCloseElem.forEach((button) => {
-  const popup = button.closest('.popup');
-  button.addEventListener('click', () => closePopup(popup));
-});
-
-//закрытие попапа нажатием Escape
-const closePopupByEsc = (event) => {
-  if (event.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened');
-    closePopup(openedPopup);
-  }
-}
-
-//закрытие попапа кликом на оверлей
+///универсальное закрытие попап 
 popupElems.forEach((popup) => {
   popup.addEventListener('mousedown', (event) => {
     if (
@@ -100,6 +89,14 @@ popupElems.forEach((popup) => {
     }
   });
 });
+
+//закрытие попапа нажатием Escape
+const closePopupByEsc = (event) => {
+  if (event.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
 
 
 //шаблон
@@ -157,6 +154,7 @@ const handleSubmitAddCard = (event) => {
 }
 
 formCard.addEventListener('submit', handleSubmitAddCard);
+
 
 //добавление карточек
 const renderCard = (dataCard) => {
