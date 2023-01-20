@@ -1,80 +1,68 @@
-import {
-    openPopup,
-    popupImage,
-    popupPicture,
-    popupText,
-  } from "./index.js";
-
-export default class Card {
-    constructor(data, cardSelector) {
-        this._cardInputName = data.name;
-        this._cardInputLink = data.link;
-        this._cardSelector = cardSelector;
+class Card {
+    constructor(data, templateSelector, handleCardPopup) {
+        this._name = data.name;
+        this._link = data.link;
+        this._templateSelector = templateSelector;
+        this._handleCardPopup = handleCardPopup;
     }
 
-    _getTemplate(){
-        this._card = document
-        .querySelector(this._cardSelector)
-        .content.querySelector('.element__item')
-        .cloneNode(true);
+    //получение карточки
+    _getTemplateCard() {
+        const card = document
+            .querySelector(this._templateSelector)
+            .content.querySelector('.element__item')
+            .cloneNode(true);
 
-        return this._card;
+        return card;
     }
 
-    _deleteCard() {
-        this._newCard.remowe();
+    //удаление
+    _handleDelete() {
+        this._newCard.remove();
         this._newCard = null;
     }
 
-    _likeCard() {
-        this.classList.toggle('.element__like');
-    }
-
-    _openPopupImage() {
-        popupImage.src = this._cardInputLink;
-        popupText.textContent = this._cardInputName;
-        popupImage.alt = this._cardInputName;
-
-        openPopup(popupPicture);
+    //лайк
+    _handerLikeCard() {
+        this._likeCard.classList.toggle('element__like_active');
     }
 
     _setData() {
-        this._titleElement = this._newCard.querySelector('.element__title');
-        this._imageElement = this._newCard.querySelector('.element__image');
+        this._cardName = this._newCard.querySelector('.element__title');
+        this._cardName.textContent = this._name;
 
-        this._titleElement.textContent = this._cardInputName;
-        this._imageElement.src = this._cardInputLink;
-        this._imageElement.alt = this._cardInputName;
-
+        this._cardImage = this._newCard.querySelector('.element__image');
+        this._cardImage.src = this._link;
+        this._cardImage.alt = this._name;
     }
 
+
+
+    //слушатели
     _setEventListeners() {
-        this._newCard
-        .querySelector('.element__delete')
-        .addEventListener('click', () => { 
-            this._deleteCard() 
-        });
 
-        this._newCard
-        .querySelector('.element__like')
-        .addEventListener('click', () => {
-            this._likeCard() 
-        });
+        //удаление
+        this._deleteCard = this._newCard.querySelector('.element__delete');
+        this._deleteCard.addEventListener('click', () => { this._handleDelete(); })
 
-        this._imageElement
-        .addEventListener('click', () => {
-            this._openPopupImage()
-        });
+        //лайк
+        this._likeCard = this._newCard.querySelector('.element__like');
+        this._likeCard.addEventListener('click', () => { this._handerLikeCard(); })
+
+        //открытие изображения
+        this._cardImage.addEventListener('click', () => { this._handleCardPopup(this._link, this._name); })
 
     }
 
+    //публичный метод
     getView() {
-        this._newCard = this._getTemplate();
+        this._newCard = this._getTemplateCard();
         this._setData();
         this._setEventListeners();
 
         return this._newCard;
     }
+
 }
 
-/
+export default Card;

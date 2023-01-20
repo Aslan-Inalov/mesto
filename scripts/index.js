@@ -1,13 +1,39 @@
-import Card from "./Card.js";
-
-
+import Card from "./card.js";
 // узлы
+
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
 const popupOpenElem = document.querySelector('.profile__edit-button');
 const cardAddBtn = document.querySelector('.profile__add-button');
 const popupElems = document.querySelectorAll('.popup');
 const popupProfile = document.querySelector('.popup_profile');
 const popupCard = document.querySelector('.popup_card');
-export const popupPicture = document.querySelector('.popup_picture');
+const popupPicture = document.querySelector('.popup_picture');
 const popupCloseElems = document.querySelectorAll('.popup__close-button');
 const profileName = document.querySelector('.profile__name');
 const profileAbout = document.querySelector('.profile__about');
@@ -19,14 +45,17 @@ const formCardBtn = formCard.querySelector('.popup__button');
 const cardContainer = document.querySelector('.element');
 const cardInputName = document.querySelector('.popup__input_card_name');
 const cardInputLink = document.querySelector('.popup__input_card_link');
-export const popupImage = document.querySelector('.popup__image');
-export const popupText = document.querySelector('.popup__picture-text');
+const popupImage = document.querySelector('.popup__image');
+const popupText = document.querySelector('.popup__picture-text');
+const cardTemplate = document.querySelector('#card-template');
+
+
 
 
 
 
 //открытие попапа
-export function openPopup(popup) {
+function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupByEsc);
 }
@@ -101,49 +130,12 @@ const closePopupByEsc = (event) => {
   }
 }
 
-
-//шаблон
-const cardTemplate = document.querySelector('#card-template').content.querySelector('.element__item');
-
-
-//генерация карточки
-// const handerDeleteCard = (event) => {
-//   event.target.closest('.element__item').remove();
-// }
-
-// const handerLikeCard = (event) => {
-//   event.target.classList.toggle('element__like_active');
-// }
-
-//  const generateCard = (dataCard) => {
-//   const newCard = cardTemplate.cloneNode(true);
-
-//   const titleCard = newCard.querySelector('.element__title');
-//   const imageCard = newCard.querySelector('.element__image');
-//   titleCard.textContent = dataCard.name;
-//   imageCard.src = dataCard.link;
-//   imageCard.alt = dataCard.name;
-
-//   const deleteBtn = newCard.querySelector('.element__delete');
-//   deleteBtn.addEventListener('click', handerDeleteCard)
-
-//   const likeBtn = newCard.querySelector('.element__like');
-//   likeBtn.addEventListener('click', handerLikeCard)
-
-//   //попак просмотра картинок
-//   imageCard.addEventListener('click', () => {
-//     openPopup(popupPicture);
-
-//     popupImage.src = dataCard.link;
-//     popupImage.alt = dataCard.name;
-//     popupText.textContent = dataCard.name;
-
-//   })
-
-//   return newCard;
-
-
-// }
+const handleCardPopup = (link, name) => {
+  openPopup(popupPicture);
+  popupImage.src = link;
+  popupText.textContent = name;
+  popupText.alt = name;
+}
 
 //обработчик событий
 const handleSubmitAddCard = (event) => {
@@ -161,9 +153,9 @@ formCard.addEventListener('submit', handleSubmitAddCard);
 
 //добавление карточек
 const renderCard = (dataCard) => {
-  const card = new Card(dataCard);
-  cardContainer.prepend(card.getView());
-}
+  const newCard = new Card(dataCard, '#card-template', handleCardPopup);
+  cardContainer.prepend(newCard.getView());
+};
 
 //рендер карточек
 initialCards.forEach((dataCard) => {
