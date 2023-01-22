@@ -97,27 +97,18 @@ function handleFormProfileSubmit(event) {
 popupOpenElem.addEventListener('click', () => {
   openPopup(popupProfile);
   changeValue();
-  clearErrors(popupProfile);
+  profileFormValidator.resetValidation();
 });
 
 //сохранить
 formProfile.addEventListener('submit', handleFormProfileSubmit);
 
-function resetErrors(form) {
-  const inputs = form.querySelectorAll('.form__input');
-  inputs.forEach((input) => {
-    hideInputError(form, input, configValidation);
-  });
-}
-
 //КАРТОЧКИ
 //открыть
 cardAddBtn.addEventListener('click', () => {
-  formCardBtn.disabled = true;
   formCard.reset();
-  resetErrors(formCard);
+  cardFormValidator.resetValidation();
   openPopup(popupCard);
-  clearErrors(popupCard);
 });
 
 ///универсальное закрытие попап 
@@ -161,33 +152,25 @@ const handleSubmitAddCard = (event) => {
 formCard.addEventListener('submit', handleSubmitAddCard);
 
 
-//добавление карточек
-const renderCard = (dataCard) => {
+function createCard(dataCard) {
   const newCard = new Card(dataCard, '#card-template', handleCardPopup);
-  cardContainer.prepend(newCard.getView());
+  const cardElement = newCard.getView();
+  return cardElement
+}
+
+const renderCard = (dataCard) => {
+  const newCard = createCard(dataCard);
+  cardContainer.prepend(newCard);
 };
+
+
+
+
 
 //рендер карточек
 initialCards.forEach((dataCard) => {
   renderCard(dataCard);
 })
-
-//удаление ошибок
-function clearErrors(enterPopup) {
-  const errors = enterPopup.querySelectorAll(".popup__input-error_active");
-  errors.forEach((error) => {
-    error.classList.remove(`popup__input-error_active`);
-    error.textContent = "";
-  });
-  const borders = enterPopup.querySelectorAll(".popup__input_type_error");
-  borders.forEach((border) => {
-    border.classList.remove(`popup__input_type_error`);
-  });
-
-  if (enterPopup.classList.contains("popup_type_profile")) {
-    toggleButtonState(false, enterPopup, configValidation);
-  }
-}
 
 const profileFormValidator = new FormValidator(formProfile, configValidation);
 const cardFormValidator = new FormValidator(formCard, configValidation);

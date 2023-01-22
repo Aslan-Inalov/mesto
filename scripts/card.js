@@ -5,6 +5,7 @@ class Card {
         this._templateSelector = templateSelector;
         this._handleCardPopup = handleCardPopup;
     }
+    
 
     //получение карточки
     _getTemplateCard() {
