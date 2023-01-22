@@ -1,4 +1,5 @@
-import Card from "./card.js";
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
 // узлы
 
 const initialCards = [
@@ -27,6 +28,15 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
+
+
+export const configValidation = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active'
+};
 
 const popupOpenElem = document.querySelector('.profile__edit-button');
 const cardAddBtn = document.querySelector('.profile__add-button');
@@ -161,4 +171,26 @@ const renderCard = (dataCard) => {
 initialCards.forEach((dataCard) => {
   renderCard(dataCard);
 })
+
+//удаление ошибок
+function clearErrors(enterPopup) {
+  const errors = enterPopup.querySelectorAll(".popup__input-error_active");
+  errors.forEach((error) => {
+    error.classList.remove(`popup__input-error_active`);
+    error.textContent = "";
+  });
+  const borders = enterPopup.querySelectorAll(".popup__input_type_error");
+  borders.forEach((border) => {
+    border.classList.remove(`popup__input_type_error`);
+  });
+
+  if (enterPopup.classList.contains("popup_type_profile")) {
+    toggleButtonState(false, enterPopup, configValidation);
+  }
+}
+
+const profileFormValidator = new FormValidator(formProfile, configValidation);
+const cardFormValidator = new FormValidator(formCard, configValidation);
+profileFormValidator.enableValidation();
+cardFormValidator.enableValidation();
 
