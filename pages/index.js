@@ -1,9 +1,5 @@
-import Card from "../components/card.js";
-import FormValidator from "../components/FormValidator.js";
-
 import { initialCards } from "../utils/initialCards.js"
 import { configValidation } from "../utils/config.js"
-
 
 import {
   popupOpenElem, cardAddBtn, popupElems,
@@ -15,6 +11,27 @@ import {
   popupText, cardTemplate
 } from "../utils/constants.js"
 
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+import Section from "../components/Section.js";
+
+
+const renderCard = new Section(
+  {
+    items: initialCards,
+    renderer: (dataCard) => {
+      renderCard.addItem(createCard(dataCard));
+    },
+  },
+  cardContainer
+);
+
+function createCard(dataCard) {
+  const newCard = new Card(dataCard, '#card-template', handleCardPopup);
+  return newCard.getView();
+}
+
+
 
 
 
@@ -22,9 +39,9 @@ import {
 
 //открытие попапа
 function openPopup(popup) {
-    popup.classList.add('popup_opened');
-    document.addEventListener('keydown', closePopupByEsc);
-  }
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupByEsc);
+}
 
 //закрытие попапа
 function closePopup(popup) {
@@ -108,28 +125,31 @@ const handleSubmitAddCard = (event) => {
 formCard.addEventListener('submit', handleSubmitAddCard);
 
 
-function createCard(dataCard) {
-  const newCard = new Card(dataCard, '#card-template', handleCardPopup);
-  const cardElement = newCard.getView();
-  return cardElement
-}
+// function createCard(dataCard) {
+//   const newCard = new Card(dataCard, '#card-template', handleCardPopup);
+//   const cardElement = newCard.getView();
+//   return cardElement
+//}
 
-const renderCard = (dataCard) => {
-  const newCard = createCard(dataCard);
-  cardContainer.prepend(newCard);
-};
+// const renderCard = (dataCard) => {
+//   const newCard = createCard(dataCard);
+//   cardContainer.prepend(newCard);
+// };
 
 
 
 
 
 //рендер карточек
-initialCards.forEach((dataCard) => {
-  renderCard(dataCard);
-})
+// initialCards.forEach((dataCard) => {
+//   renderCard(dataCard);
+// })
 
 const profileFormValidator = new FormValidator(formProfile, configValidation);
 const cardFormValidator = new FormValidator(formCard, configValidation);
 profileFormValidator.enableValidation();
 cardFormValidator.enableValidation();
+
+renderCard.renderItems();
+
 
