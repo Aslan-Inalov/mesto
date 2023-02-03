@@ -1,21 +1,30 @@
-import {
-  popupOpenElem, cardAddBtn, popupElems, popupProfile, popupCard, 
-  popupPicture, profileName, profileAbout, 
-  profileInputName, profileInputAbout, formProfile, formCard, 
-  cardContainer, cardInputName, cardInputLink, popupImage, 
-  popupText, initialCards, configValidation
-} from "../utils/config.js";
-
 import Card from "../components/card.js";
 import FormValidator from "../components/FormValidator.js";
+
+import { initialCards } from "../utils/initialCards.js"
+import { configValidation } from "../utils/config.js"
+
+
+import {
+  popupOpenElem, cardAddBtn, popupElems,
+  popupProfile, popupCard, popupPicture,
+  popupCloseElems, profileName, profileAbout,
+  profileInputName, profileInputAbout, formProfile,
+  formCard, formCardBtn, cardContainer,
+  cardInputName, cardInputLink, popupImage,
+  popupText, cardTemplate
+} from "../utils/constants.js"
+
+
+
 
 
 
 //открытие попапа
 function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closePopupByEsc);
-}
+    popup.classList.add('popup_opened');
+    document.addEventListener('keydown', closePopupByEsc);
+  }
 
 //закрытие попапа
 function closePopup(popup) {
