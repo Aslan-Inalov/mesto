@@ -124,27 +124,6 @@ const handleSubmitAddCard = (event) => {
 
 formCard.addEventListener('submit', handleSubmitAddCard);
 
-
-// function createCard(dataCard) {
-//   const newCard = new Card(dataCard, '#card-template', handleCardPopup);
-//   const cardElement = newCard.getView();
-//   return cardElement
-//}
-
-// const renderCard = (dataCard) => {
-//   const newCard = createCard(dataCard);
-//   cardContainer.prepend(newCard);
-// };
-
-
-
-
-
-//рендер карточек
-// initialCards.forEach((dataCard) => {
-//   renderCard(dataCard);
-// })
-
 const profileFormValidator = new FormValidator(formProfile, configValidation);
 const cardFormValidator = new FormValidator(formCard, configValidation);
 profileFormValidator.enableValidation();
