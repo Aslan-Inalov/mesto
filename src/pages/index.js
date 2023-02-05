@@ -40,7 +40,6 @@ const profileFormPopup = new PopupWithForm({
   popupSelector: popupProfile,
   submitCallback: (formValues) => {
     userInfo.setUserInfo(formValues);
-    console.log(formValues);
     profileFormPopup.close();
   }
 })
@@ -49,21 +48,18 @@ const cardFormPopup = new PopupWithForm({
   popupSelector: popupCard,
   submitCallback: (formValues) => {
     const dataCard = { name: formValues.nameCard, link: formValues.linkCard };
-    console.log(dataCard);
     renderCard.addItem(createCard(dataCard));
-    console.log(formValues);
     cardFormPopup.close();
   }
 });
 
 function createCard(dataCard) {
-  const newCard = new Card(dataCard, '#card-template', handleCardPopup);
+  const newCard = new Card(dataCard, '#card-template', handleCardClick);
   return newCard.getView();
 }
 
-const handleCardPopup = (name, link) => {
+const handleCardClick = (name, link) => {
   popupWithImage.open(link, name);
-  console.log(popupWithImage);
 }
 
 

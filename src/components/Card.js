@@ -1,9 +1,9 @@
 class Card {
-    constructor(data, templateSelector, handleCardPopup) {
+    constructor(data, templateSelector, handleCardClick) {
         this._name = data.name;
         this._link = data.link;
         this._templateSelector = templateSelector;
-        this._handleCardPopup = handleCardPopup;
+        this._handleCardClick = handleCardClick;
     }
     
 
@@ -51,7 +51,7 @@ class Card {
         this._likeCard.addEventListener('click', () => { this._handerLikeCard(); })
 
         //открытие изображения
-        this._cardImage.addEventListener('click', () => { this._handleCardPopup(this._link, this._name); })
+        this._cardImage.addEventListener('click', () => { this._handleCardClick(this._link, this._name); })
 
     }
 

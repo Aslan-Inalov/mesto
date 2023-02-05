@@ -7,7 +7,6 @@ class Section {
 
     addItem(element) {
         this._container.prepend(element)
-        console.log(this._container)
     }
 
     renderItems() {
