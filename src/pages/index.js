@@ -16,7 +16,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 
-//import './index.css';
+import './index.css';
 
 const profileFormValidator = new FormValidator(formProfile, configValidation);
 const cardFormValidator = new FormValidator(formCard, configValidation);
