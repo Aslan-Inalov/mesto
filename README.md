@@ -27,12 +27,12 @@
 
 ---------------------------------
 
-[Макет #1](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1&t=0gI2e8mOjjHeFr7b-0) в Figma
+[Макет #1](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1&t=0gI2e8mOjjHeFr7b-0)
 
-[Макет #2](https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=0%3A1&t=ha7l7whlitaepk48-0) в Figma
+[Макет #2](https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=0%3A1&t=ha7l7whlitaepk48-0)
 
-[Макет #3](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=0%3A1&t=xyf7kZacD5724rxB-0) с элементами ошибок для валидации форм.
+[Макет #3](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=0%3A1&t=xyf7kZacD5724rxB-0) 
 
-###Ссылка на проект
+### Ссылка на проект
 
 [Mesto](https://aslan-inalov.github.io/mesto/)
