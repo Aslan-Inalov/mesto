@@ -34,4 +34,4 @@
 
 ### Ссылка на проект
 
-__[Mesto](https://aslan-inalov.github.io/mesto/)__
+[__Mesto__](https://aslan-inalov.github.io/mesto/)
