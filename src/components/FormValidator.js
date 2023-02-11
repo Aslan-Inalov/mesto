@@ -18,7 +18,7 @@ class FormValidator {
     //скрывает элемент ошибки
     _hideInputError = (inputElement) => {
         this._errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
-        inputElement.classList.remove(this._configValidation.inputErrorClass);
+        // inputElement.classList.remove(this._configValidation.inputErrorClass);
         this._errorElement.classList.remove(this._configValidation.errorClass);
         this._errorElement.textContent = '';
     };
