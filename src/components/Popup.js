@@ -1,6 +1,8 @@
 class Popup {
     constructor({popupSelector}) {
+        this._popupSelector = popupSelector;
         this._popup = document.querySelector(popupSelector);
+        this._popupSave = this._popup.querySelector('.popup__button');
         this._handleEscClose = this._handleEscClose.bind(this);
     }
 
@@ -30,6 +32,16 @@ class Popup {
             }
         });
     }
+
+    isLoading(isLoading) {
+        if(isLoading) {
+          this._popupSave.textContent = 'Сохранение...'
+        } else if (this._popupSelector == '.popup_card'){
+          this._popupSave.textContent = 'Создать'
+        } else {
+          this._popupSave.textContent = 'Сохранить'
+        }
+      }
 }
 
 export default Popup;
