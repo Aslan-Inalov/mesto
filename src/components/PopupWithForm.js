@@ -22,6 +22,16 @@ export default class PopupWithForm extends Popup {
         });
     }
 
+    isLoading(isLoading) {
+        if(isLoading) {
+          this._popupSave.textContent = 'Сохранение...'
+        } else if (this._popupSelector == '.popup_card'){
+          this._popupSave.textContent = 'Создать'
+        } else {
+          this._popupSave.textContent = 'Сохранить'
+        }
+      }
+
     setEventListeners() {
         super.setEventListeners();
         this._popupForm.addEventListener('submit', (event) => {

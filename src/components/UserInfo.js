@@ -9,16 +9,28 @@ class UserInfo {
         return { name: this._profileNameText.textContent, about: this._profileAboutText.textContent }
 
     }
+    
     setUserInfo(formValues) {
-        this._profileNameText.textContent = formValues.name;
-        this._profileAboutText.textContent = formValues.about;
-        this._profileAvatar.src = formValues.avatar;
-        this._profileAvatar.alt = formValues.name;
+        if (formValues.name) {
+            this._profileNameText.textContent = formValues.name
+        }
+        if (formValues.about) {
+            this._profileAboutText.textContent = formValues.about
+        }
+        if (formValues.avatar) {
+            this._profileAvatar.src = formValues.avatar
+        }
+        if (formValues.name) {
+            this._profileAvatar.alt = formValues.name
+        }
+
     }
 
     setUserAvatar(formValues) {
-        this._profileAvatar.src = formValues.avatarLink;
-      }
+        if (formValues.avatarLink) {
+            this._profileAvatar.src = formValues.avatarLink
+        }
+    }
 }
 
 export default UserInfo;

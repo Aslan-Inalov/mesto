@@ -32,16 +32,7 @@ class Popup {
             }
         });
     }
-
-    isLoading(isLoading) {
-        if(isLoading) {
-          this._popupSave.textContent = 'Сохранение...'
-        } else if (this._popupSelector == '.popup_card'){
-          this._popupSave.textContent = 'Создать'
-        } else {
-          this._popupSave.textContent = 'Сохранить'
-        }
-      }
+      
 }
 
 export default Popup;
