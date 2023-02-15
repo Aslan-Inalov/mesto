@@ -125,10 +125,13 @@ const cardFormPopup = new PopupWithForm({
 const popupEditAvatar = new PopupWithForm({
   popupSelector: '.popup_avatar',
   submitCallback: (link) => {
+    popupEditAvatar.isLoading(true);
     console.log(link);
     api.updateAvatar(link).then(result => {
       userInfo.setUserInfo(result);
       popupEditAvatar.close();
+    }).finally(() => {
+      popupEditAvatar.isLoading(false);
     })
   }
 });
