@@ -35,7 +35,7 @@ export default class Api {
             body: JSON.stringify({
                 name: formValues.name,
                 about: formValues.about
-            }),
+            })
         }).then(res => {
             if (res.ok) {
                 return res.json();
